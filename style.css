@@ -1,6 +1,6 @@
 body {
   
-  background-image: url("img/OIP-3956743881.jpg");
+  background-image: url("img/joel_theme.png");
 
   background-size: cover; 
   background-repeat: no-repeat; 
@@ -38,6 +38,9 @@ figure {
 }
 
 figcaption p {
+  background: #022206d7;
+  padding: 20px 40px;
+  border-radius: 8px;
   font-style: italic;
   font-size: 16px;
   color: whitesmoke;
@@ -45,13 +48,19 @@ figcaption p {
 }
 
 ul {
-  background: #fff;
+  color: #fff;
+  background:#022206d7;
   padding: 20px 40px;
   border-radius: 8px;
   list-style-type: square;
 }
 
-p {
+.characteristics, .personality, .skills {
+  color: #fff;
+  background: #022206d7;
+  padding: 20px 40px;
+  border-radius: 8px;
+  list-style-type: square;
   margin-bottom: 20px;
   text-align: justify;
 }
