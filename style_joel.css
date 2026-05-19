@@ -1,21 +1,23 @@
 body {
-  
   background-image: url("img/joel_theme.png");
-
-  background-size: cover; 
-  background-repeat: no-repeat; 
-
-  color: whi; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(4, 79, 4, 0.878);
   line-height: 1.6;
   font-family: Arial, sans-serif;
-  
+
   max-width: 800px;
   margin: 0 auto;
   padding: 40px 20px;
- 
 }
 
-h1, h3 {
+h1 {
+  color: whitesmoke;
+  border-bottom: 2px solid #dcdde1;
+  padding-bottom: 5px;
+  text-align: center;
+}
+h3 {
   color: whitesmoke;
   border-bottom: 2px solid #dcdde1;
   padding-bottom: 5px;
@@ -33,7 +35,7 @@ figure {
   margin: 20px 0;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   text-align: center;
 }
 
@@ -49,13 +51,15 @@ figcaption p {
 
 ul {
   color: #fff;
-  background:#022206d7;
+  background: #022206d7;
   padding: 20px 40px;
   border-radius: 8px;
   list-style-type: square;
 }
 
-.characteristics, .personality, .skills {
+.characteristics,
+.personality,
+.skills {
   color: #fff;
   background: #022206d7;
   padding: 20px 40px;
