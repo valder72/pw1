@@ -1,6 +1,7 @@
 //1
 function maxElementProcedure(arr) {
-    console.log("Максимальний елемент у процедурному стилі на основі ітеративного циклу for");
+    console.log("\nМаксимальний елемент у процедурному стилі на основі ітеративного циклу for: \n");
+    console.log(`Вхідний масив: ${arr}\n`);
     let max = arr[0];
     if (arr.length === 0) {
         return undefined;
@@ -14,7 +15,8 @@ function maxElementProcedure(arr) {
 }
 
 function maxElementFunction(arr) {
-    console.log("Максимальний елемент у функціональному стилі з використанням функції Array.reduce()");
+    console.log("\nМаксимальний елемент у функціональному стилі з використанням функції Array.reduce(): \n");
+    console.log(`Вхідний масив: ${arr}\n`);
     if (arr.length === 0) {
         return undefined;
     }
@@ -26,46 +28,49 @@ function maxElementFunction(arr) {
 //2
 
 function sortString(str) {
-    console.log("Сортування рядків");
+    console.log("\nСортування рядків: \n");
+    console.log(`Вхідний рядок: ${str}\n`);
     return str.split('').sort().join('');
 }
 
 //3
 
 function extramalIncrement() {
-    console.log("Екстремальний інкремент");
+    console.log("\nЕкстремальний інкремент: \n");
     let x = Number.MAX_SAFE_INTEGER;
-    console.log((x++)<x);
+    console.log(`For Number.MAX_SAFE_INTEGER: ${(x++)<x}`);
     x = Number.MAX_SAFE_INTEGER + 1;
-    console.log((x++)<x);
+    console.log(`For Number.MAX_SAFE_INTEGER + 1: ${(x++)<x}`);
 
     x = 2**53 - 1;
-    console.log((x++)<x);
+    console.log(`For 2**53 - 1: ${(x++)<x}`);
     x = 2**53;
-    console.log((x++)<x);
+    console.log(`For 2**53: ${(x++)<x}`);
 
     x = 9007199254740991;
-    console.log((x++)<x);
+    console.log(`For 9007199254740991: ${(x++)<x}`);
     x = 9007199254740992;
-    console.log((x++)<x);
+    console.log(`For 9007199254740992: ${(x++)<x}`);
 }
 
 //4
 
 function intransitiveComparison() {
-    console.log("Нетранзитивні порівняння або чому не варто використовувати ==");
+    console.log("\nНетранзитивні порівняння або чому не варто використовувати ==: \n");
     let x = "0";
     let y = 0;
     let z = [];
-    console.log(x == y);
-    console.log(y == z);
-    console.log(x == z);
+    console.log('x: "0" y = 0 z = []\n');
+    console.log(`x == y: ${x == y}`);
+    console.log(`y == z: ${y == z}`);
+    console.log(`x == z: ${x == z}`);
 }
 
 //5
 
 function sumGreaterThanAvarage(arr) {
-    console.log("Кращі за посередність");
+    console.log("\nКращі за посередність: \n");
+    console.log(`Вхідний масив: ${arr}\n`);
     if (arr.length === 0) {
         return 0;
     }
@@ -86,9 +91,9 @@ function sumGreaterThanAvarage(arr) {
 //6
 
 function reverseSortedArray(arr) {
-    console.log("Сортування масивів");
-    let reversed = [...arr].sort().reverse();
-    return reversed;
+    console.log("\nСортування масивів: \n");
+    console.log(`Вхідний масив: ${arr}\n`);
+    return [...arr].sort((a, b) => b - a)
 }
 
 //Test
