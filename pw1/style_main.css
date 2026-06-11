@@ -47,3 +47,12 @@ h1 {
   background: #044b0ed7;
   transform: scale(1.05);
 }
+
+.menu a.hovered {
+  background: #044b0ed7;
+  transform: scale(1.05);
+}
+
+h1.glow {
+  text-shadow: 0 0 18px #7fff7f, 0 0 40px #7fff7f;
+}
