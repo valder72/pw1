@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Cybersec</title>
+  </head>
+  <body data-bs-spy="scroll">
+    <header class="bg-dark text-white p-3 text-center">
+      <h1>CyberSec</h1>
+    </header>
+    <nav
+      id="navbar"
+      class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+    >
+      <div class="container d-flex justify-content-between align-items-center">
+        <ul class="navbar-nav d-flex flex-row gap-3">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#home">Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#news">Новини</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#form">Форма</a>
+          </li>
+        </ul>
+
+        <a href="login.html" class="btn btn-outline-light" id="login-btn"
+          >Увійти</a
+        >
+      </div>
+    </nav>
+    <main class="container my-4">
+      <section id="home">
+        <h2 class="mb-4 text-center">Ласкаво просимо до CyberSec</h2>
+        <p class="text-center">
+          <b>CyberSec</b> - це новинний портал, який пропонує актуальні
+          інформаційні повідомлення про безпеку в Інтернеті.
+        </p>
+      </section>
+      <section id="search" class="mb-5">
+        <h2 class="mb-4 text-center" id="search-title">Пошук новин</h2>
+        <form class="d-flex justify-content-center mb-4" id="search-form">
+          <input
+            class="form-control w-50"
+            type="search"
+            placeholder="Пошук новин..."
+            aria-label="Search"
+          />
+          <button class="btn btn-danger ms-2" type="submit" id="search-button">
+            Пошук
+          </button>
+        </form>
+      </section>
+      <section id="news">
+        <h2 class="mb-4 text-center" id="news-title">Новини</h2>
+        <div class="row g-3"></div>
+      </section>
+      <section id="form">
+        <h2 class="mb-4 text-center" id="form-title">Залиште свій відгук</h2>
+        <form id="feedback-form" class="w-75 mx-auto">
+          <div class="mb-3">
+            <label for="name" class="form-label">Ім'я</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Ваше ім'я"
+              required
+            />
+            <label for="email" class="form-label mt-3">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Ваш email"
+              required
+            />
+            <label for="message" class="form-label mt-3">Повідомлення</label>
+            <textarea
+              class="form-control"
+              id="message"
+              rows="4"
+              placeholder="Ваш відгук"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger mt-3">Надіслати</button>
+        </form>
+      </section>
+    </main>
+    <footer class="bg-dark text-white text-center p-4 mt-5">
+      <p>© 2026 CyberNews. Всі права захищені.</p>
+      <p>Створено для навчальних цілей</p>
+      <p>Автор: Погрібний Володимир</p>
+      <p>Контакт: v.pohribnyy@ukma.edu.ua</p>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
