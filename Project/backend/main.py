@@ -6,8 +6,11 @@ import models, schemas, utils
 from fastapi import UploadFile, Form, File
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 security = HTTPBearer()
 app.add_middleware(
     CORSMiddleware,
@@ -115,4 +118,8 @@ def delete_news(news_id: int, current_user: models.User = Depends(get_current_ad
         raise HTTPException(status_code=404, detail="News not found")
     db.delete(news)
     db.commit()
-    return {"message": "News deleted successfully"} 
+    return {"message": "News deleted successfully"}
+
+@app.get("/me", response_model=schemas.UserResponse)
+def get_me(current_user: models.User = Depends(get_current_user)):
+    return current_user

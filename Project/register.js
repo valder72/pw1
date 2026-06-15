@@ -15,13 +15,16 @@ document.getElementById('register-form')
         body: JSON.stringify({ name, email, password })
       })
       
-      if (!res.ok) {
-        const err = await res.json()
-        console.log(err)
-        return
-      }
+    const errorMsg = document.getElementById('error-msg')
 
-      window.location.href = 'login.html'
+    if (!res.ok) {
+        const err = await res.json()
+        errorMsg.textContent = err.detail  
+        errorMsg.classList.remove('d-none')
+        return
+    }
+
+    window.location.href = 'login.html'
       
     } catch (err) {
       console.log(err)

@@ -51,6 +51,7 @@
         <form class="d-flex justify-content-center mb-4" id="search-form">
           <input
             class="form-control w-50"
+            id="search-input"
             type="search"
             placeholder="Пошук новин..."
             aria-label="Search"
@@ -62,7 +63,11 @@
       </section>
       <section id="news">
         <h2 class="mb-4 text-center" id="news-title">Новини</h2>
-        <div class="row g-3"></div>
+        <div class="row g-3" id="news-container">
+          <div id="spinner" class="text-center">
+            <div class="spinner-border text-danger"></div>
+          </div>
+        </div>
       </section>
       <section id="form">
         <h2 class="mb-4 text-center" id="form-title">Залиште свій відгук</h2>
@@ -108,5 +113,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="script.js"></script>
   </body>
 </html>
