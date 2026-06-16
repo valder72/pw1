@@ -14,7 +14,7 @@ async function loadNews() {
     const container = document.getElementById("news-container");
 
     if (news.length === 0) {
-      container.className = "text-center"
+      container.className = "text-center";
       container.innerHTML = "<p>Новин поки немає</p>";
       return;
     }
@@ -40,71 +40,121 @@ async function loadNews() {
   }
 }
 
-function checkAuth() {
-    const token = localStorage.getItem('token')
-    const loginBtn = document.getElementById('login-btn')
-    
-    if (token) {
-        loginBtn.textContent = 'Вийти'
-        loginBtn.href = '#'
-        loginBtn.addEventListener('click', () => {
-            localStorage.removeItem('token')
-            window.location.reload()
-        })
+async function loadPostOptions() {
+  try {
+    const res = await fetch(`${API}/news`);
+    const news = await res.json();
+    const select = document.getElementById("post-select");
+
+    select.innerHTML = "";
+    for (const item of news) {
+      const option = document.createElement("option");
+      option.value = item.id;
+      option.textContent = item.title;
+      select.append(option);
     }
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-checkAuth()
+async function loadComments() {
+  try {
+    const res = await fetch(`${API}/feedback`);
+    const comments = await res.json();
+    const list = document.getElementById("comments-list");
+
+    list.innerHTML = "";
+
+    if (comments.length === 0) {
+      list.innerHTML = "<p class='text-center'>Відгуків поки немає</p>";
+      return;
+    }
+
+    for (const c of comments) {
+      const card = document.createElement("div");
+      card.className = "card mb-3";
+      card.innerHTML = `
+        <div class="card-body">
+          <h5 class="card-title">${c.author}</h5>
+          <p class="news-title mb-2">Новина: ${c.news_title}</p>
+          <p class="card-text">${c.message}</p>
+        </div>
+      `;
+      list.append(card);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function checkAuth() {
+  const token = localStorage.getItem("token");
+  const loginBtn = document.getElementById("login-btn");
+
+  if (token) {
+    loginBtn.textContent = "Вийти";
+    loginBtn.href = "#";
+    loginBtn.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.reload();
+    });
+  }
+}
+
+checkAuth();
 loadNews();
+loadPostOptions();
+loadComments();
 
-document.getElementById('feedback-form')
-    .addEventListener('submit', async (e) => {
-        e.preventDefault()
-        
-        const token = localStorage.getItem('token')
-        
-        if (!token) {
-            window.location.href = 'login.html'
-            return
-        }
-        
-        const message = document.getElementById('message').value
-        
-        try {
-            const res = await fetch(`${API}/feedback?message=${encodeURIComponent(message)}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`  
-                },
-            })
-            
-            if (!res.ok) throw new Error(`HTTP ${res.status}`)
-            
-            document.getElementById('message').value = ''
-            
-            const successMsg = document.createElement('p')
-            successMsg.textContent = 'Відгук надіслано!'
-            successMsg.className = 'text-success mt-2'
-            document.getElementById('feedback-form').append(successMsg)
+document
+  .getElementById("feedback-form")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-            setTimeout(() => successMsg.remove(), 3000)
+    const token = localStorage.getItem("token");
 
-            
-        } catch (err) {
-            console.log(err)
-        }
-    })
+    if (!token) {
+      window.location.href = "login.html";
+      return;
+    }
 
-document.getElementById('search-form')
-    .addEventListener('submit', (e) => {
-        e.preventDefault()
-        const query = document.getElementById('search-input').value.toLowerCase()
-        const cards = document.querySelectorAll('#news-container .col-12')
-        
-        cards.forEach(card => {
-            const title = card.querySelector('.card-title').textContent.toLowerCase()
-            card.style.display = title.includes(query) ? 'block' : 'none'
-        })
-    })    
+    const newsId = document.getElementById("post-select").value;
+    const message = document.getElementById("message").value;
 
+    try {
+      const res = await fetch(`${API}/feedback`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ news_id: Number(newsId), message }),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      document.getElementById("message").value = "";
+      loadComments();
+
+      const successMsg = document.createElement("p");
+      successMsg.textContent = "Відгук надіслано!";
+      successMsg.className = "text-success mt-2";
+      document.getElementById("feedback-form").append(successMsg);
+
+      setTimeout(() => successMsg.remove(), 3000);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+document.getElementById("search-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const query = document.getElementById("search-input").value.toLowerCase();
+  const cards = document.querySelectorAll("#news-container .col-12");
+
+  cards.forEach((card) => {
+    const title = card.querySelector(".card-title").textContent.toLowerCase();
+    card.style.display = title.includes(query) ? "block" : "none";
+  });
+});

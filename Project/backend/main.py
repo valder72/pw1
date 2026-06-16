@@ -8,6 +8,7 @@ import os
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+os.makedirs("static", exist_ok=True)
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -72,15 +73,31 @@ def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
     return {"message": "Login successful", "access_token": token, "token_type": "bearer"}
 
 @app.post("/feedback")
-def submit_feedback(message: str, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+def submit_feedback(feedback: schemas.FeedbackCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     db_feedback = models.Feedback(
-        message=message,
+        message=feedback.message,
+        news_id=feedback.news_id,
         user_id=current_user.id
     )
     db.add(db_feedback)
     db.commit()
     db.refresh(db_feedback)
     return {"message": "Feedback submitted successfully"}
+
+@app.get("/feedback")
+def read_feedback(db: Session = Depends(get_db)):
+    feedbacks = db.query(models.Feedback).all()
+    result = []
+    for f in feedbacks:
+        user = db.query(models.User).filter(models.User.id == f.user_id).first()
+        news = db.query(models.News).filter(models.News.id == f.news_id).first()
+        result.append({
+            "id": f.id,
+            "message": f.message,
+            "author": user.name if user else "Невідомий",
+            "news_title": news.title if news else "",
+        })
+    return result
 
 @app.post("/news")
 def create_news(img: UploadFile = File(...), title: str = Form(...), content: str = Form(...), current_user: models.User = Depends(get_current_admin), db: Session = Depends(get_db)):
@@ -98,6 +115,27 @@ def create_news(img: UploadFile = File(...), title: str = Form(...), content: st
     db.commit()
     db.refresh(db_news)
     return {"message": "News created successfully"}
+
+@app.put("/news/{news_id}")
+def update_news(news_id: int, title: str = Form(...), content: str = Form(...), img: UploadFile = File(None), current_user: models.User = Depends(get_current_admin), db: Session = Depends(get_db)):
+    news = db.query(models.News).filter(models.News.id == news_id).first()
+    if not news:
+        raise HTTPException(status_code=404, detail="News not found")
+
+    news.title = title
+    news.content = content
+
+    # Нове фото не обовʼязкове — якщо його передали, оновлюємо
+    if img is not None:
+        img_path = f"static/{img.filename}"
+        os.makedirs("static", exist_ok=True)
+        with open(img_path, "wb") as buffer:
+            buffer.write(img.file.read())
+        news.img = img_path
+
+    db.commit()
+    db.refresh(news)
+    return {"message": "News updated successfully"}
 
 @app.get("/news/{news_id}")
 def read_news(news_id: int, db: Session = Depends(get_db)):

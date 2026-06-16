@@ -14,6 +14,7 @@ class Feedback(Base):
     id = Column(Integer, primary_key=True, index=True)
     message = Column(String)
     user_id = Column(Integer, ForeignKey("users.id"))
+    news_id = Column(Integer, ForeignKey("news.id"))
 
 class News(Base):
     __tablename__ = "news"

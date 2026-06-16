@@ -9,22 +9,21 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style_register.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Register</title>
   </head>
   <body>
     <header class="bg-dark text-white p-3 text-center mb-4">
       <h1 style="color: #e74c3c">CyberSec</h1>
     </header>
+    <div class="position-fixed top-0 end-0 p-3">
+      <a href="index.html" class="btn btn-outline-light"> На головну </a>
+    </div>
     <div
       class="container d-flex justify-content-center align-items-center"
-      style="height: 100vh"
+      style="height: 80vh"
     >
-      <form
-        class="p-5 rounded shadow"
-        style="width: 300px; background-color: #f8f9fa"
-        id="register-form"
-      >
+      <form class="cs-form p-5 rounded shadow" id="register-form">
         <h2 class="text-center mb-4">Register</h2>
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
@@ -55,13 +54,13 @@
             class="form-control"
             id="password"
             placeholder="Enter password"
-            minlength="6"
+            minlength="8"
             maxlength="100"
             required
           />
         </div>
         <div id="error-msg" class="alert alert-danger d-none mt-3"></div>
-        <button type="submit" class="btn btn-primary w-100">Register</button>
+        <button type="submit" class="btn btn-danger w-100">Register</button>
         <div class="mt-3 text-center">
           <p>Already have an account? <a href="login.html">Login here</a></p>
         </div>

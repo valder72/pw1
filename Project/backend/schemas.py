@@ -38,4 +38,5 @@ class UserLogin(BaseModel):
     password: str = Field(..., min_length=8, max_length=100)
 
 class FeedbackCreate(BaseModel):
+    news_id: int
     message: str = Field(..., min_length=10, max_length=500)

@@ -1,0 +1,54 @@
+body {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
+
+h2 {
+  color: #e74c3c;
+}
+
+a {
+  color: #e74c3c;
+}
+
+.cs-form {
+  width: 320px;
+  background-color: #16213e;
+  color: #e0e0e0;
+}
+
+.admin-form {
+  background-color: #16213e;
+  color: #e0e0e0;
+  position: sticky;
+  top: 1rem;
+}
+
+.card {
+  background-color: #16213e;
+  color: #e0e0e0;
+  border: 1px solid #0f3460;
+}
+
+.card-title {
+  color: #e74c3c;
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
+
+.news-title {
+  color: #4cf100;
+}
