@@ -31,6 +31,9 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="#form">Форма</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#quiz">Вікторина</a>
+          </li>
         </ul>
 
         <a href="login.html" class="btn btn-outline-light" id="login-btn"
@@ -89,7 +92,130 @@
       </section>
       <section id="comments" class="mt-5">
         <h2 class="mb-4 text-center">Відгуки</h2>
+        <div id="comments-spinner" class="text-center d-none mb-3">
+          <div class="spinner-border text-danger" role="status"></div>
+        </div>
         <div id="comments-list" class="w-75 mx-auto"></div>
+      </section>
+      <section id="quiz" class="mt-5">
+        <h2 class="mb-4 text-center">Вікторина з кібербезпеки</h2>
+        <form id="quiz-form" class="w-75 mx-auto">
+          <div class="mb-4">
+            <p class="fw-bold">1. Що таке фішинг?</p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q1"
+                id="q1a"
+                value="a"
+              />
+              <label class="form-check-label" for="q1a"
+                >Вид шкідливого ПЗ</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q1"
+                id="q1b"
+                value="b"
+              />
+              <label class="form-check-label" for="q1b"
+                >Шахрайство з метою виманити конфіденційні дані</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q1"
+                id="q1c"
+                value="c"
+              />
+              <label class="form-check-label" for="q1c">Тип брандмауера</label>
+            </div>
+          </div>
+          <div class="mb-4">
+            <p class="fw-bold">2. Який пароль найнадійніший?</p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q2"
+                id="q2a"
+                value="a"
+              />
+              <label class="form-check-label" for="q2a">12345678</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q2"
+                id="q2b"
+                value="b"
+              />
+              <label class="form-check-label" for="q2b">qwerty</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q2"
+                id="q2c"
+                value="c"
+              />
+              <label class="form-check-label" for="q2c"
+                >Випадковий набір із 16+ символів</label
+              >
+            </div>
+          </div>
+          <div class="mb-4">
+            <p class="fw-bold">
+              3. Для чого потрібна двофакторна автентифікація (2FA)?
+            </p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q3"
+                id="q3a"
+                value="a"
+              />
+              <label class="form-check-label" for="q3a"
+                >Додатковий рівень захисту при вході</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q3"
+                id="q3b"
+                value="b"
+              />
+              <label class="form-check-label" for="q3b"
+                >Прискорення з'єднання</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="q3"
+                id="q3c"
+                value="c"
+              />
+              <label class="form-check-label" for="q3c"
+                >Резервне копіювання даних</label
+              >
+            </div>
+          </div>
+          <button type="submit" class="btn btn-danger">Перевірити</button>
+          <div id="quiz-result" class="mt-3 fw-bold"></div>
+        </form>
       </section>
     </main>
     <footer class="bg-dark text-white text-center p-4 mt-5">
