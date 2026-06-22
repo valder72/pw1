@@ -1,6 +1,6 @@
 import { fetchFeedback, sendFeedback } from "../api/feedbackApi.js";
 import { renderComments, renderCommentsError } from "../ui/commentsUI.js";
-import { getToken } from "../storage/storage.js";
+import { getToken, clearAuth } from "../storage/storage.js";
 
 export async function loadComments(list, spinner) {
   if (spinner) spinner.classList.remove("d-none");
@@ -32,6 +32,21 @@ export function initFeedbackForm(form, {selectEl, messageEl, commentsList, comme
 
     try {
       const res = await sendFeedback(selectEl.value, messageEl.value, token);
+      if (res.status === 401) {
+        clearAuth();
+        alert("Ваша сесія закінчилася. Будь ласка, увійдіть знову.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      if (res.status === 422) {
+        const serverError = document.createElement("p");
+        serverError.textContent = "Некоректні дані (мінімум 10 символів)!";
+        serverError.className = "text-danger mt-2";
+        form.append(serverError);
+        setTimeout(() => serverError.remove(), 3000);
+        return;
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       messageEl.value = "";
@@ -43,7 +58,7 @@ export function initFeedbackForm(form, {selectEl, messageEl, commentsList, comme
       form.append(successMsg);
       setTimeout(() => successMsg.remove(), 3000);
     } catch (err) {
-      console.log(err);
+      console.log(res.ok);
     }
   });
 }

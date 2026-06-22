@@ -3,11 +3,7 @@ body {
   color: #e0e0e0;
 }
 
-h2 {
-  color: #e74c3c;
-}
-
-a {
+h1, h2, a {
   color: #e74c3c;
 }
 

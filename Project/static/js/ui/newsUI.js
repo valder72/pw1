@@ -1,4 +1,4 @@
-import { API } from "../api/config.js";
+import { API } from "../config.js";
 import { NewsItem } from "../models/NewsItem.js";
 
 export function renderNews(news, container) {

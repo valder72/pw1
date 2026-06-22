@@ -1,7 +1,7 @@
 
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
-from jose import jwt
+from jose import jwt, JWTError
 
 SECRET_KEY = "SOME_RANDOM_SECRETSJGKGJLSGJNBN849T3NG3C948"
 ALGORITHM = "HS256"
@@ -18,7 +18,7 @@ def verify_access_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
-    except jwt.InvalidTokenError:
+    except JWTError:
         return None
     
 pwd_context = CryptContext(schemes=["bcrypt"])

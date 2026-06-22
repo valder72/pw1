@@ -1,12 +1,12 @@
-import { API } from "../api/config.js";
+import { API } from "../config.js";
 import { NewsItem } from "../models/NewsItem.js";
 
-for (const raw of news) {
-  const item = new NewsItem(raw.id, raw.title, raw.content, raw.img);
-
+export function renderAdminNews(news, list) {
   list.textContent = "";
 
-  for (const item of news) {
+  for (const raw of news) {
+    const item = new NewsItem(raw.id, raw.title, raw.content, raw.img);
+    
     const col = document.createElement("div");
     col.className = "col-12 col-md-6";
 

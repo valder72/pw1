@@ -3,7 +3,9 @@ export function renderComments(comments, list) {
 
   if (comments.length === 0) {
     const p = document.createElement("p");
-    p.className = "text-center text-muted mt-3";
+    p.className = "text-center mt-3";
+    p.style.color = "#f5f7f7"
+    p.style.fontSize = "24px"
     p.textContent = "Відгуків поки немає. Будьте першим!";
     list.append(p);
     return;
@@ -22,7 +24,7 @@ export function renderComments(comments, list) {
     title.style.color = "#05f519"
 
     const newsTitle = document.createElement("h6");
-    newsTitle.className = "card-subtitle mb-2 text-muted";
+    newsTitle.className = "card-subtitle mb-2";
     newsTitle.textContent = `До новини: ${c.news_title}`;
     newsTitle.style.color = "#54c0d1"
 

@@ -1,4 +1,4 @@
-import { API } from "./config.js";
+import { API } from "../config.js";
 
 export async function login(email, password) {
   return fetch(`${API}/login`, {

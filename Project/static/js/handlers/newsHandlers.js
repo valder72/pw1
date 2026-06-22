@@ -21,8 +21,15 @@ export async function loadNews(container, spinner) {
 
 export async function searchNews(query, container) {
   try {
-    const news = await fetchNews(query);
-    renderNews(news, container);
+    const allNews = await fetchNews();
+    const lowerQuery = query.toLowerCase();
+
+    const filteredNews = allNews.filter(item => 
+      item.title.toLowerCase().includes(lowerQuery) || 
+      item.content.toLowerCase().includes(lowerQuery)
+    );
+
+    renderNews(filteredNews, container);
   } catch (err) {
     console.error(err);
     renderError(container, "Не вдалося завантажити дані, зачекайте будь ласка.");
