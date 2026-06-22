@@ -20,7 +20,7 @@ export async function loadComments(list, spinner) {
   }
 }
 
-export function initFeedbackForm(form, { selectEl, messageEl, onSent }) {
+export function initFeedbackForm(form, {selectEl, messageEl, commentsList, commentsSpinner}) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const token = getToken();
@@ -35,7 +35,7 @@ export function initFeedbackForm(form, { selectEl, messageEl, onSent }) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       messageEl.value = "";
-      onSent?.();
+      loadComments(commentsList, commentsSpinner);
 
       const successMsg = document.createElement("p");
       successMsg.textContent = "Відгук надіслано!";

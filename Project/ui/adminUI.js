@@ -1,6 +1,9 @@
 import { API } from "../api/config.js";
+import { NewsItem } from "../models/NewsItem.js";
 
-export function renderAdminNews(news, list) {
+for (const raw of news) {
+  const item = new NewsItem(raw.id, raw.title, raw.content, raw.img);
+
   list.textContent = "";
 
   for (const item of news) {
@@ -23,9 +26,8 @@ export function renderAdminNews(news, list) {
 
     const text = document.createElement("p");
     text.className = "card-text";
-    text.textContent =
-      item.content.length > 100 ? item.content.substring(0, 100) + "..." : item.content;
-
+    text.textContent = item.shortContent;
+    
     cardBody.append(title, text);
 
     const cardFooter = document.createElement("div");

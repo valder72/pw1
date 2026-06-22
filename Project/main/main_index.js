@@ -35,7 +35,8 @@ setInterval(() => {
 initFeedbackForm(feedbackForm, {
   selectEl: postSelect,
   messageEl,
-  onSent: () => loadComments(commentsList, commentsSpinner),
+  commentsList, 
+  commentsSpinner
 });
 
 searchForm.addEventListener("submit", async (e) => {

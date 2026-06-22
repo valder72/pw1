@@ -125,7 +125,6 @@ def update_news(news_id: int, title: str = Form(...), content: str = Form(...), 
     news.title = title
     news.content = content
 
-    # Нове фото не обовʼязкове — якщо його передали, оновлюємо
     if img is not None:
         img_path = f"static/{img.filename}"
         os.makedirs("static", exist_ok=True)

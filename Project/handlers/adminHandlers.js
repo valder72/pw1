@@ -13,6 +13,8 @@ export function guardAdmin() {
 
 export function initAdminPage() {
   const token = guardAdmin();
+  
+  if (!token) return;
 
   const form = document.querySelector("#news-form");
   const list = document.querySelector("#news-list");

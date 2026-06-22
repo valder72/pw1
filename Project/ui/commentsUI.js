@@ -17,12 +17,14 @@ export function renderComments(comments, list) {
     cardBody.className = "card-body";
 
     const title = document.createElement("h5");
-    title.className = "card-title text-danger";
+    title.className = "card-title";
     title.textContent = c.author;
+    title.style.color = "#05f519"
 
     const newsTitle = document.createElement("h6");
     newsTitle.className = "card-subtitle mb-2 text-muted";
     newsTitle.textContent = `До новини: ${c.news_title}`;
+    newsTitle.style.color = "#54c0d1"
 
     const message = document.createElement("p");
     message.className = "card-text mt-3";

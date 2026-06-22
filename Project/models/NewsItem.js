@@ -11,12 +11,4 @@ export class NewsItem {
       ? this.content.slice(0, 100) + "…"
       : this.content;
   }
-
-  toJSON() {
-    return { id: this.id, title: this.title, content: this.content, img: this.img };
-  }
-
-  static fromJSON(obj) {
-    return new NewsItem(obj.id, obj.title, obj.content, obj.img);
-  }
 }
