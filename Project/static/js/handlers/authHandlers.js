@@ -51,7 +51,21 @@ export function initRegisterForm(form, errorEl) {
 
       if (!res.ok) {
         const err = await res.json();
-        errorEl.textContent = err.detail;
+
+        let errorMessage = "Помилка реєстрації";
+
+        if (Array.isArray(err.detail)) {
+          errorMessage = err.detail
+            .map((e) => {
+              const field = e.loc ? e.loc[e.loc.length - 1] : "Помилка";
+              return `${field}: ${e.msg}`;
+            })
+            .join("\n");
+        } else if (typeof err.detail === "string") {
+          errorMessage = err.detail;
+        }
+
+        errorEl.textContent = errorMessage;
         errorEl.classList.remove("d-none");
         return;
       }
@@ -59,6 +73,8 @@ export function initRegisterForm(form, errorEl) {
       window.location.href = "login.html";
     } catch (err) {
       console.log(err);
+      errorEl.textContent = "Помилка з'єднання з сервером";
+      errorEl.classList.remove("d-none");
     }
   });
 }
